@@ -14,7 +14,7 @@ public class WeatherSync : Script
     {
         // Load settings from .ini file
         LoadSettings();
-        
+
         Tick += OnTick;
     }
 
@@ -47,35 +47,35 @@ public class WeatherSync : Script
 
     private void SetGameWeather(string condition)
     {
-        WeatherType weatherType;
+        string weatherType;
 
         switch (condition.ToLower())
         {
             case "clear":
             case "sunny":
-                weatherType = WeatherType.Clear;
+                weatherType = "CLEAR";
                 break;
             case "clouds":
             case "cloudy":
-                weatherType = WeatherType.Clouds;
+                weatherType = "CLOUDS";
                 break;
             case "rain":
-                weatherType = WeatherType.Rain;
+                weatherType = "RAIN";
                 break;
             case "thunderstorm":
-                weatherType = WeatherType.Thunder;
+                weatherType = "THUNDER";
                 break;
             case "fog":
-                weatherType = WeatherType.Foggy;
+                weatherType = "FOG";
                 break;
             case "snow":
-                weatherType = WeatherType.Snow; // Assuming the game has a Snow type
+                weatherType = "SNOW";
                 break;
             default:
-                weatherType = WeatherType.Clear;
+                weatherType = "CLEAR"; // Default to clear if condition doesn't match
                 break;
         }
 
-        Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, weatherType.ToString());
+        Function.Call(Hash.SET_WEATHER_TYPE_NOW_PERSIST, weatherType);
     }
 }
